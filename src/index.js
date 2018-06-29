@@ -1,23 +1,28 @@
 export default function({ types: t }) {
-  name: 'bochen-first-plugin',
-
   function CheckGelXIFrameReferencePaths(refPaths) {
-    refPaths.forEach(path=> {
+    refPaths.forEach(path => {
       debugger;
       if (t.isJSXOpeningElement(path.parent)) {
-         const sandbox = path.parent.attributes.find(attr=>attr.name.name === 'sandbox');
-         if(sandbox){
-           debugger;
-           console.warn(`WARNING:  you have overriden sandbox attribute of @wdpui/gel-x-iframe`)
-         }
+        const sandbox = path.parent.attributes.find(
+          attr => attr.name.name === "sandbox"
+        );
+        if (sandbox) {
+          debugger;
+          console.warn(
+            `WARNING:  you have overriden sandbox attribute of @wdpui/gel-x-iframe`
+          );
+        }
       }
     });
   }
 
   const visitor = {
     Program: {
-      enter({ scope: { bindings } }) {
-        debugger;
+      enter(path) {
+        console.log("start processing", path.hub.file.opts.filenameRelative);
+        const {
+          scope: { bindings }
+        } = path;
         for (const key in bindings) {
           const binding = bindings[key];
           if (binding.kind === "module" && binding.referenced) {
@@ -45,7 +50,6 @@ export default function({ types: t }) {
     },
 
     JSXOpeningElement({ node }) {
-      debugger;
       if (t.isJSXIdentifier(node.name, { name: "iframe" })) {
         throw Error(
           `\n\n Error: can't use <iframe> directly. use @wdpui/gel-x-frame instead`

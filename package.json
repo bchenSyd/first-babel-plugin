@@ -5,8 +5,16 @@
   "keywords": [
     "babel-plugin"
   ],
+  "scripts": {
+    "prepublish": "babel src -d lib"
+  },
   "dependencies": {
-    "babel-runtime": "^6.22.0",
-    "babel-plugin-syntax-jsx": "^6.8.0"
+    "babel-plugin-syntax-jsx": "^6.8.0",
+    "babel-runtime": "^6.22.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0"
   }
 }
