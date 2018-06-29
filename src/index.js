@@ -13,7 +13,7 @@ export default function({ types: t }) {
         if (sandbox) {
           debugger;
           console.warn(
-            `WARNING:  you have overriden sandbox attribute of @wdpui/gel-x-iframe`
+            `WARNING:  you have overriden sandbox attribute of @wdpui/gel-x-iframe to ${sandbox.value.value}`
           );
         }
       }
