@@ -1,3 +1,7 @@
+const __gelx_lib_name = "@wdpui/gel-x";
+const __gelx_iframe_export_name = "GelXIFrame";
+const __gelx_iframe_name = "@wdpui/gel-x-frame";
+
 export default function({ types: t }) {
   function CheckGelXIFrameReferencePaths(refPaths) {
     refPaths.forEach(path => {
@@ -31,14 +35,19 @@ export default function({ types: t }) {
               t.isImportDefaultSpecifier(path) &&
               t.isImportDeclaration(path.parent)
             ) {
-              if (path.parent.source.value === "@wdpui/gel-x-iframe") {
+              // defualt import case;
+              if (path.parent.source.value === __gelx_iframe_name) {
                 CheckGelXIFrameReferencePaths(binding.referencePaths);
               }
             } else if (
               t.isImportSpecifier(path) &&
               t.isImportDeclaration(path.parent)
             ) {
-              if (path.parent.source.value === "@wdpui/gel-x") {
+              // named import case;
+              if (
+                path.node.imported.name === __gelx_iframe_export_name &&
+                path.parent.source.value === __gelx_lib_name
+              ) {
                 CheckGelXIFrameReferencePaths(binding.referencePaths);
               }
             } else {

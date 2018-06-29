@@ -1,5 +1,5 @@
 import  Header from '../Header';
-import { GelXIframe as MyIframe } from "@wdpui/gel-x";
+import { Flyout, GelXIFrame as MyIframe} from "@wdpui/gel-x";
 import GelXIframe from "@wdpui/gel-x-iframe";
 import WDPIFrame from "@wdpui/gel-x-iframe";
 
@@ -8,9 +8,10 @@ const HomePage = () => (
     <Header/>
     <iframe src="something" />
     <MyIframe />
-    <MyIframe sandbox="allow-modal" />
-    <GelXIframe sandbox="allow-modal" />
-    <WDPIFrame sandbox="allow-modal" />
+    <Flyout/>
+    <MyIframe sandbox="allow-modal111" />
+    <GelXIframe sandbox="allow-modal222" />
+    <WDPIFrame sandbox="allow-modal333" />
   </div>
 );
 
